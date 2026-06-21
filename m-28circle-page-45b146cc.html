@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>28圈 · 稳定入口与使用说明</title>
+    <style>
+        /* 极简留白 · 窄正文 · 清晰层级 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #faf9f8;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+            line-height: 1.8;
+            color: #1e1e1e;
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page-wrapper {
+            max-width: 680px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* 文章 header */
+        .post-header {
+            margin-bottom: 2.8rem;
+            border-bottom: 1px solid #e6e3e0;
+            padding-bottom: 1.2rem;
+        }
+
+        .post-header h1 {
+            font-size: 1.9rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            color: #111;
+            margin-bottom: 0.4rem;
+        }
+
+        .post-meta {
+            font-size: 0.85rem;
+            color: #7a7a7a;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 0.3rem;
+        }
+
+        .post-meta span {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        /* 正文区域 */
+        .post-content {
+            font-size: 1rem;
+        }
+
+        .post-content p {
+            margin-bottom: 1.6rem;
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        .post-content p.lead {
+            font-size: 1.08rem;
+            color: #2c2c2c;
+            font-weight: 400;
+            border-left: 3px solid #d1cbc6;
+            padding-left: 1.2rem;
+        }
+
+        /* 引用提示（块状引用） */
+        .blockquote-note {
+            background: #f3f1ef;
+            border-radius: 6px;
+            padding: 1.2rem 1.6rem;
+            margin: 2rem 0 1.8rem 0;
+            border-left: 4px solid #b0a89f;
+            font-style: normal;
+            color: #2e2a26;
+        }
+
+        .blockquote-note p {
+            margin-bottom: 0.6rem;
+        }
+
+        .blockquote-note p:last-child {
+            margin-bottom: 0;
+        }
+
+        .blockquote-note .label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #7a6f63;
+            margin-bottom: 0.4rem;
+        }
+
+        /* 特点列表（极简符号） */
+        .feature-list {
+            list-style: none;
+            margin: 2rem 0 1.8rem 0;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            display: flex;
+            gap: 0.75rem;
+            align-items: baseline;
+            border-bottom: 1px dashed #e0dbd6;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list li::before {
+            content: "—";
+            color: #b0a89f;
+            font-weight: 300;
+            width: 1.2rem;
+            flex-shrink: 0;
+            text-align: right;
+        }
+
+        /* 访问句（自然嵌入链接） */
+        .visit-sentence {
+            background: #ffffff;
+            border: 1px solid #e3ddd8;
+            border-radius: 8px;
+            padding: 1.3rem 1.6rem;
+            margin: 2.4rem 0 1.2rem 0;
+            font-size: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+        }
+
+        .visit-sentence a {
+            color: #2b5f6b;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            font-weight: 500;
+            transition: color 0.15s;
+        }
+
+        .visit-sentence a:hover {
+            color: #14454f;
+            text-decoration-color: #14454f;
+        }
+
+        /* faq 摘要（迷你卡片） */
+        .faq-mini {
+            margin: 2.5rem 0 1rem 0;
+        }
+
+        .faq-mini details {
+            border-bottom: 1px solid #eae6e1;
+            padding: 0.8rem 0;
+        }
+
+        .faq-mini details:first-of-type {
+            border-top: 1px solid #eae6e1;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            cursor: pointer;
+            color: #1f2a2e;
+            padding: 0.2rem 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .faq-mini summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-mini summary::after {
+            content: "+";
+            font-size: 1.2rem;
+            color: #9c948b;
+            transition: transform 0.2s;
+        }
+
+        .faq-mini details[open] summary::after {
+            content: "–";
+        }
+
+        .faq-mini .faq-answer {
+            padding: 0.5rem 0 0.2rem 0;
+            color: #3b3b3b;
+            font-size: 0.95rem;
+        }
+
+        /* 分隔/脚注 */
+        .footer-note {
+            margin-top: 3.5rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #e6e3e0;
+            font-size: 0.8rem;
+            color: #8d857e;
+            text-align: left;
+            letter-spacing: 0.01em;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 480px) {
+            body {
+                padding: 1.5rem 1rem;
+            }
+
+            .post-header h1 {
+                font-size: 1.6rem;
+            }
+
+            .blockquote-note {
+                padding: 1rem 1.2rem;
+            }
+
+            .visit-sentence {
+                padding: 1rem 1.2rem;
+            }
+
+            .feature-list li {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .post-header h1 {
+                font-size: 2.1rem;
+            }
+
+            .post-content p {
+                font-size: 1.04rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- 文章标题 + 导语 -->
+    <header class="post-header">
+        <h1>28圈 · 一处稳定的数字角落</h1>
+        <div class="post-meta">
+            <span>页面说明</span>
+            <span>·</span>
+            <span>简洁入口</span>
+        </div>
+    </header>
+
+    <!-- 正文多段 -->
+    <div class="post-content">
+
+        <p class="lead">
+            最早接触这个站点，只觉得界面干净，没有多余的弹窗和推送。后来用得久了，慢慢习惯把它当成一个日常查看的地方——不需要每次重新搜索，也不必担心链接失效。今天这篇短文，就是想从“稳定入口”和“页面本身”的角度，聊聊我理解的 <a href="https://m--28circle.com">28圈</a>。
+        </p>
+
+        <p>
+            经常上网的人大概都有同感：收藏夹里一堆链接，过几个月再点开，要么跳转到奇怪域名，要么直接打不开。一个能长期保持指向有效的地址，其实比花哨的功能更珍贵。<strong>28圈</strong> 的域名结构比较简单，没有多层跳转，输入之后直接呈现内容。这种直给的方式，让人觉得踏实。
+        </p>
+
+        <blockquote class="blockquote-note">
+            <span class="label">使用提示</span>
+            <p>如果你第一次打开，建议先浏览页面的大致分类。很多功能入口都放在显眼位置，不需要层层点击。另外，站内没有自动播放的媒体文件，对于习惯安静浏览的人来说比较友好。</p>
+        </blockquote>
+
+        <p>
+            从页面本身的设计来看，它没有堆叠太多装饰元素。导航区、内容区、底部信息——每个模块都留有适当的呼吸空间。字体大小和行距照顾了长时间阅读，深色文字配浅色背景，对比度足够但不刺眼。我个人很欣赏这种“不打扰”的视觉节奏，它让注意力自然落在文字和链接上。
+        </p>
+
+        <ul class="feature-list">
+            <li>直接访问，无需注册或下载额外程序</li>
+            <li>页面结构清晰，主要区域一目了然</li>
+            <li>没有侵入式弹窗或强制跳转</li>
+            <li>更新节奏稳定，信息时效性较好</li>
+        </ul>
+
+        <p>
+            当然，一个站点是否好用，最终还是看它是否符合你的使用场景。有些人需要经常查阅固定板块，有些人只是偶尔路过。但无论如何，拥有一个可靠的入口地址，至少能减少“找不着北”的挫败感。我通常把 <a href="https://m--28circle.com">28圈</a> 放在浏览器的书签栏第一列，打开即用，不费时间。
+        </p>
+
+        <!-- 访问句：自然嵌入链接 -->
+        <div class="visit-sentence">
+            <p>如果你也在寻找一个风格简明、入口稳定的页面，不妨试试 <a href="https://m--28circle.com">28圈</a>。它没有喧闹的标语，就是一个安安静静、随时可以打开的地方。</p>
+        </div>
+
+        <!-- FAQ 摘要 -->
+        <div class="faq-mini">
+            <details>
+                <summary>页面适配移动端吗？</summary>
+                <div class="faq-answer">适配。在手机浏览器上显示正常，文字和按钮大小经过响应式处理，横竖屏都可阅读。</div>
+            </details>
+            <details>
+                <summary>需要科学上网才能打开吗？</summary>
+                <div class="faq-answer">不需要。该站点在国内网络环境下可直接访问，无特殊限制。</div>
+            </details>
+            <details>
+                <summary>内容多久更新一次？</summary>
+                <div class="faq-answer">没有固定周期，但整体节奏偏稳定。建议隔一段时间刷新看看，不必频繁检查。</div>
+            </details>
+        </div>
+
+        <p style="margin-top: 1.2rem;">
+            最后说一点个人感受：网络上变化很快，今天好用的东西明天可能就换了模样。能有一个保持原样、不折腾用户的页面，本身就算一种品质。如果你觉得合意，就把它留在书签里吧。
+        </p>
+
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer-note">
+        页面说明 · 稳定入口 · 日常使用参考
+    </div>
+
+</div>
+</body>
+</html>
