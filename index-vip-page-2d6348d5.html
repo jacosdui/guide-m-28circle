@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>乐鱼 · 使用指南与说明</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', 'PingFang SC', Roboto, 'Helvetica Neue', sans-serif;
+      background-color: #f4f9fc;
+      color: #1e2b3c;
+      line-height: 1.6;
+      padding: 24px 16px;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    /* 头部 */
+    .hero {
+      background: linear-gradient(145deg, #e0f0f5 0%, #cde7ef 100%);
+      border-radius: 28px;
+      padding: 48px 32px;
+      margin-bottom: 48px;
+      box-shadow: 0 4px 16px rgba(0, 60, 70, 0.06);
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: #0a3b44;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 680px;
+      color: #1f4b57;
+    }
+
+    .hero .badge {
+      display: inline-block;
+      background: #2b7a8c;
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 4px 14px;
+      border-radius: 30px;
+      margin-bottom: 20px;
+    }
+
+    /* 网格卡片区 */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      margin-bottom: 48px;
+    }
+
+    @media (min-width: 660px) {
+      .grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 28px 24px;
+      box-shadow: 0 6px 20px rgba(42, 110, 120, 0.05);
+      border: 1px solid rgba(140, 195, 205, 0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(30, 100, 110, 0.08);
+    }
+
+    .card .icon {
+      font-size: 2rem;
+      margin-bottom: 8px;
+      display: inline-block;
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #0b4a57;
+      margin-bottom: 10px;
+      border-left: 4px solid #3a9bad;
+      padding-left: 12px;
+    }
+
+    .card p, .card li {
+      font-size: 0.98rem;
+      color: #2a4752;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .card ul li::before {
+      content: "▹ ";
+      color: #3a9bad;
+      font-weight: 600;
+    }
+
+    .card .highlight {
+      background: #e3f2f5;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-weight: 500;
+      color: #0a4e5c;
+    }
+
+    /* 提示 / 注意区域 */
+    .notice-box {
+      background: #e7f4f8;
+      border-radius: 24px;
+      padding: 32px 28px;
+      margin: 40px 0 48px;
+      border-left: 5px solid #2f8b9e;
+    }
+
+    .notice-box h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #09414d;
+      margin-bottom: 16px;
+    }
+
+    .notice-box p {
+      color: #1c4f5c;
+      margin-bottom: 12px;
+    }
+
+    .notice-box a {
+      color: #196d7e;
+      text-decoration: underline;
+      font-weight: 500;
+      text-underline-offset: 3px;
+    }
+
+    .notice-box a:hover {
+      color: #0b495a;
+    }
+
+    /* faq 摘要 */
+    .faq-mini {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 32px 28px;
+      margin-bottom: 40px;
+      box-shadow: 0 2px 12px rgba(0, 40, 50, 0.04);
+    }
+
+    .faq-mini h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #09414d;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .faq-item {
+      padding: 14px 0;
+      border-bottom: 1px solid #dfeef2;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-item strong {
+      display: block;
+      font-weight: 600;
+      color: #115562;
+      margin-bottom: 4px;
+    }
+
+    .faq-item span {
+      color: #2b5c68;
+      font-size: 0.95rem;
+    }
+
+    .faq-item a {
+      color: #1d7183;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* 底部 */
+    .footer-note {
+      text-align: center;
+      font-size: 0.85rem;
+      padding: 24px 0 12px;
+      color: #597e88;
+      border-top: 1px solid #d2e6ec;
+    }
+
+    .footer-note a {
+      color: #1a6c7c;
+      text-decoration: none;
+    }
+
+    .footer-note a:hover {
+      text-decoration: underline;
+    }
+
+    /* 按钮风格 — 仅装饰用，不添加访问文本 */
+    .tag {
+      display: inline-block;
+      background: #d7eef4;
+      color: #0a4e5c;
+      padding: 6px 18px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin: 4px 6px 4px 0;
+    }
+
+    .flex-tags {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 16px 0 0;
+    }
+
+    /* 移动端微调 */
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .hero {
+        padding: 32px 20px;
+      }
+      .card {
+        padding: 22px 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- hero 区域：简明指南+访问提醒 -->
+  <div class="hero">
+    <span class="badge">简明指南</span>
+    <h1>乐鱼 · 使用说明与访问提醒</h1>
+    <p>这是一份认真整理的产品说明页。你可以把它当作快速上手的参考，也作为了解基础功能与访问注意事项的入口。整体保持平实，不带夸张引导。</p>
+  </div>
+
+  <!-- 网格卡片：亮点 + 使用建议 等 -->
+  <div class="grid-2">
+
+    <!-- 卡片 1：产品摘要 / 特点 -->
+    <div class="card">
+      <div class="icon">📋</div>
+      <h3>产品摘要</h3>
+      <p><strong>乐鱼</strong> 定位为信息集成与轻量互动的工具型平台。它围绕内容组织、快捷查阅与基础交互展开，并非娱乐或投资类产品。界面以简洁、低干扰为优先，适合日常信息浏览与整理场景。</p>
+      <div class="flex-tags">
+        <span class="tag">信息聚合</span>
+        <span class="tag">轻交互</span>
+        <span class="tag">低门槛</span>
+      </div>
+    </div>
+
+    <!-- 卡片 2：亮点与特性 -->
+    <div class="card">
+      <div class="icon">✨</div>
+      <h3>核心亮点</h3>
+      <ul>
+        <li>结构清晰的模块分区，减少信息噪音</li>
+        <li>响应式布局，手机与桌面均能获得一致体验</li>
+        <li>无强制注册或过度权限要求，注重基础使用体验</li>
+        <li>页面加载轻量，不依赖复杂外部资源</li>
+      </ul>
+    </div>
+
+    <!-- 卡片 3：使用建议 / 场景 -->
+    <div class="card">
+      <div class="icon">🔍</div>
+      <h3>使用建议</h3>
+      <p>适合在需要快速查阅、整理或对比信息时使用。建议保持浏览器为现代版本（Chrome / Edge / Safari 均可）。如遇到显示异常，可尝试清除缓存或检查网络环境。<br><br>
+      另外，你可以根据自身需求，将常用功能模块添加到书签，方便日常快速定位。</p>
+    </div>
+
+    <!-- 卡片 4：可信但克制的访问说明 -->
+    <div class="card">
+      <div class="icon">🛡️</div>
+      <h3>访问说明</h3>
+      <p>访问 <a href="https://index-vip-leyu.com">乐鱼</a> 时，建议通过官方直接链接进入，避免使用第三方非标注入口。平台不会主动索取个人敏感信息，也不会以弹窗形式引导下载或付费。<br><br>
+      如遇到要求输入密码、验证码或转账的页面，请保持警惕，那并非官方行为。</p>
+    </div>
+  </div>
+
+  <!-- 提示区域（notice）访问提醒扩充 -->
+  <div class="notice-box">
+    <h2>访问提醒 · 保持客观判断</h2>
+    <p>当你通过 <a href="https://index-vip-leyu.com">乐鱼</a> 浏览信息时，请注意以下几点：</p>
+    <p>① 所有内容均为平台内整理展示，不代表任何投资、理财或高回报承诺。<br>
+    ② 平台不会通过聊天工具、群组或个人账号要求用户转账或提供密码。<br>
+    ③ 若遇到页面加载异常或链接跳转至无关网站，请立即关闭页面并检查地址栏是否正确。<br>
+    ④ 建议开启浏览器防钓鱼保护，并定期更新浏览器版本。</p>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-mini">
+    <h2>❓ 常见疑问摘要</h2>
+    <div class="faq-item">
+      <strong>是否需要注册才能使用？</strong>
+      <span>大部分浏览功能无需注册。部分互动模块可能要求基本验证，但不会收集额外隐私。</span>
+    </div>
+    <div class="faq-item">
+      <strong>移动端访问体验如何？</strong>
+      <span>已针对手机屏幕做自适应布局，建议横屏或竖屏均可。若字体过小，可使用浏览器缩放功能。</span>
+    </div>
+    <div class="faq-item">
+      <strong>如何确保访问的是官方页面？</strong>
+      <span>直接输入或点击可信来源的链接（如本页提供的 <a href="https://index-vip-leyu.com">乐鱼</a> 链接），不要通过搜索引擎广告或第三方短链进入。</span>
+    </div>
+    <div class="faq-item">
+      <strong>遇到内容显示不全怎么办？</strong>
+      <span>尝试刷新页面或更换网络环境。部分公共 Wi-Fi 可能会限制资源加载。</span>
+    </div>
+  </div>
+
+  <!-- 底部 -->
+  <div class="footer-note">
+    <p>本页为产品说明参考。所有描述基于实际功能整理，不构成任何形式的使用承诺。</p>
+    <p style="margin-top:6px;"><a href="https://index-vip-leyu.com">乐鱼</a> · 保持清晰，保持简单</p>
+  </div>
+
+</div>
+</body>
+</html>
